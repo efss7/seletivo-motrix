@@ -14,19 +14,26 @@ export class posts1666017177107 implements MigrationInterface {
                         comment: "id do post"
                     },
                     {
+                        name: "title",
+                        type: "varchar",
+                        comment: "titulo do post"
+                    },
+                    {
                         name: "body",
                         type: "text",
                         comment: "corpo do post"
                     },
                     {
                         name: "creationDate",
-                        type: "timestamp",
+                        type: "varchar",
                         comment: "data de criação do post",
+                        isNullable: true
                     },
                     {
                         name: "updateDate",
-                        type: "timestamp",
+                        type: "varchar",
                         comment: "data de atualização do post",
+                        isNullable: true
                     },
                 ],
             }),
