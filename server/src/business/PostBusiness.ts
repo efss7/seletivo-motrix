@@ -9,6 +9,15 @@ export class PostBusiness {
         private postData: PostData,
         private idGenerator: IdGenerator
     ) { }
+
+    findAll = async (): Promise<Post[] | undefined> => {
+        try {
+            return this.postData.findAll();
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message)
+        }
+    };
+
     create = async (fields: PostCreateDto) => {
         try {
             const { title, body } = fields
@@ -30,6 +39,7 @@ export class PostBusiness {
             throw new CustomError(error.statusCode, error.message)
         }
     }
+
 }
 export default new PostBusiness(
     new PostData(),

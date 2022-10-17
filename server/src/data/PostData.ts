@@ -5,6 +5,16 @@ import BaseDatabase from "./BaseDatabase";
 const tableName = "posts"
 
 export class PostData extends BaseDatabase {
+
+    findAll = async (): Promise<Post[]> => {
+        try {
+            return BaseDatabase.connection(tableName)
+                .select("*")
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage)
+        }
+    }
+
     create = async (field: Post): Promise<void> => {
         try {
             await BaseDatabase.connection(tableName)
@@ -18,4 +28,5 @@ export class PostData extends BaseDatabase {
             throw new CustomError(500, error.sqlMessage);
         }
     }
+
 }

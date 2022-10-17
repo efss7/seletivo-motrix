@@ -1,3 +1,6 @@
+//findAll
+GET http://localhost:3003/posts
+###
 //create
 POST http://localhost:3003/posts
 Content-Type: application/json
