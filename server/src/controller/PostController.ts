@@ -16,6 +16,16 @@ export class PostController {
         }
     }
 
+    public findOne = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { id } = req.params
+            const result = await this.postBusiness.findOne(id);
+            res.status(200).send(result);
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send({ error: error.message });
+        }
+    }
+
     public create = async (req: Request, res: Response) => {
         try {
             const { title, body } = req.body

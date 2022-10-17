@@ -12,9 +12,29 @@ export class PostBusiness {
 
     findAll = async (): Promise<Post[] | undefined> => {
         try {
+
             return this.postData.findAll();
+            
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
+        }
+    };
+
+    findOne = async (id: string) => {
+        try {
+
+            if (!id || typeof id !== "string") {
+                throw new CustomError(422, "Id invalid")
+            }
+            const result = await this.postData.findOne(id);
+            if (result.length === 0) {
+                throw new CustomError(404, "Post not found")
+            }
+
+            return result
+
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message);
         }
     };
 

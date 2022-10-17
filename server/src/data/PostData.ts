@@ -15,6 +15,16 @@ export class PostData extends BaseDatabase {
         }
     }
 
+    findOne = async (id: string) => {
+        try {
+            return BaseDatabase.connection(tableName)
+                .select("*")
+                .where({ id })
+        } catch (error:any) {
+            throw new CustomError(500, error.sqlMessage);
+        }
+    }
+
     create = async (field: Post): Promise<void> => {
         try {
             await BaseDatabase.connection(tableName)

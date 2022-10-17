@@ -1,11 +1,14 @@
 //findAll
 GET http://localhost:3003/posts
 ###
+//findOne
+GET http://localhost:3003/posts/739d1b3a-45b5-4e08-8cc2-f2c7e019fd30
+###
 //create
 POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Teste",
+  "title": "Teste4",
   "body": "Toguro Lorem Ipsum"
 }
