@@ -25,12 +25,12 @@ export class posts1666017177107 implements MigrationInterface {
                     },
                     {
                         name: "creationDate",
-                        type: "varchar",
+                        type: "timestamp",
                         comment: "data de criação do post",
                     },
                     {
                         name: "updateDate",
-                        type: "varchar",
+                        type: "timestamp",
                         comment: "data de atualização do post",
                         isNullable: true
                     },

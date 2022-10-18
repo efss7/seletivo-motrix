@@ -1,3 +1,4 @@
+import moment from "moment";
 import { PostData } from "../data/PostData";
 import { PostCreateDto, PostUpdateDto } from "../model/dto/PostDto";
 import { Post } from "../model/Post";
@@ -50,7 +51,9 @@ export class PostBusiness {
             }
 
             const id = this.idGenerator.generateId()
-            const creationDate = new Date(Date.now()).toLocaleString()
+            const date = new Date(Date.now()).toLocaleDateString().split('/').reverse().join('-')
+            const time = new Date(Date.now()).toLocaleTimeString()
+            const creationDate = date + " " + time
 
             const post = new Post(id, title, body, creationDate)
             await this.postData.create(post)
@@ -74,7 +77,9 @@ export class PostBusiness {
                 throw new CustomError(422, "Body is invalid")
             }
 
-            const updateDate = new Date(Date.now()).toLocaleString()
+            const date = new Date(Date.now()).toLocaleDateString().split('/').reverse().join('-')
+            const time = new Date(Date.now()).toLocaleTimeString()
+            const updateDate = date + " " + time
             const postDB = await this.findOne(id)
             if (postDB.length === 0) {
                 throw new CustomError(404, "Post não encontrado")
@@ -89,9 +94,11 @@ export class PostBusiness {
 
     delete = async (id: string): Promise<void> => {
         try {
+
             if (!id || typeof id !== "string") {
                 throw new CustomError(422, "Id is invalid");
             }
+
             await this.postData.delete(id);
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
