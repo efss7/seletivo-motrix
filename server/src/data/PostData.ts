@@ -20,7 +20,7 @@ export class PostData extends BaseDatabase {
             return BaseDatabase.connection(tableName)
                 .select("*")
                 .where({ id })
-        } catch (error:any) {
+        } catch (error: any) {
             throw new CustomError(500, error.sqlMessage);
         }
     }
@@ -38,5 +38,19 @@ export class PostData extends BaseDatabase {
             throw new CustomError(500, error.sqlMessage);
         }
     }
+
+    update = async (field: Post): Promise<void> => {
+        try {
+            await BaseDatabase.connection(tableName)
+                .update({
+                    title: field.getTitle(),
+                    body: field.getBody(),
+                    updateDate: field.getUpdateDate()
+                })
+                .where({ id: field.getId() })
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage);
+        }
+    };
 
 }

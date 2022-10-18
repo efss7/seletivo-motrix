@@ -27,7 +27,6 @@ export class posts1666017177107 implements MigrationInterface {
                         name: "creationDate",
                         type: "varchar",
                         comment: "data de criação do post",
-                        isNullable: true
                     },
                     {
                         name: "updateDate",

@@ -2,13 +2,23 @@
 GET http://localhost:3003/posts
 ###
 //findOne
-GET http://localhost:3003/posts/739d1b3a-45b5-4e08-8cc2-f2c7e019fd30
+GET http://localhost:3003/posts/ff4721ea-6fcb-45ec-975e-de1264e64726
 ###
 //create
 POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Teste4",
+  "title": "Teste",
   "body": "Toguro Lorem Ipsum"
+}
+
+###
+//update
+PUT  http://localhost:3003/posts/09a33c3e-50b3-484c-8929-ce4f4a37bdd6
+Content-Type: application/json
+
+{ 
+  "title": "Update funfou",
+  "body": "Sucesso"
 }
