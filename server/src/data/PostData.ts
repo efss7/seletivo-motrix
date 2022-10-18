@@ -53,4 +53,14 @@ export class PostData extends BaseDatabase {
         }
     };
 
+    delete = async (id: string) => {
+        try {
+            await BaseDatabase.connection(tableName)
+                .where({ id })
+                .delete()
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage);
+        }
+    };
+    
 }

@@ -49,6 +49,16 @@ export class PostController {
         }
     }
 
+    delete = async (req: Request, res: Response): Promise<void> => {
+        const { id } = req.params;
+        try {
+            await this.postBusiness.delete(id)
+            res.status(200).send("Post deleted successfully!");
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send({ error: error.message });
+        }
+    }
+
 }
 
 export default new PostController(postBusiness)

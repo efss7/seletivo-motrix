@@ -22,3 +22,6 @@ Content-Type: application/json
   "title": "Update funfou",
   "body": "Sucesso"
 }
+###
+//delete
+DELETE  http://localhost:3003/posts/09a33c3e-50b3-484c-8929-ce4f4a37bdd6

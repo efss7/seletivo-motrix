@@ -87,6 +87,16 @@ export class PostBusiness {
         }
     };
 
+    delete = async (id: string): Promise<void> => {
+        try {
+            if (!id || typeof id !== "string") {
+                throw new CustomError(422, "Id is invalid");
+            }
+            await this.postData.delete(id);
+        } catch (error: any) {
+            throw new CustomError(error.statusCode, error.message);
+        }
+    };
 }
 export default new PostBusiness(
     new PostData(),
