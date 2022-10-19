@@ -1,6 +1,8 @@
 import moment from "moment";
+import { HistoryData } from "../data/HistoryData";
 import { PostData } from "../data/PostData";
 import { PostCreateDto, PostUpdateDto } from "../model/dto/PostDto";
+import { History } from "../model/History";
 import { Post } from "../model/Post";
 import IdGenerator from "../services/IdGenerator";
 import { CustomError } from "./errors/CustomError";
@@ -8,6 +10,7 @@ import { CustomError } from "./errors/CustomError";
 export class PostBusiness {
     constructor(
         private postData: PostData,
+        private historyData: HistoryData,
         private idGenerator: IdGenerator
     ) { }
 
@@ -58,6 +61,10 @@ export class PostBusiness {
             const post = new Post(id, title, body, creationDate)
             await this.postData.create(post)
 
+            const idHistory = this.idGenerator.generateId()
+            const history = new History(idHistory, id, title, body, creationDate)
+            await this.historyData.insertInHistory(history)
+
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message)
         }
@@ -80,10 +87,15 @@ export class PostBusiness {
             const date = new Date(Date.now()).toLocaleDateString().split('/').reverse().join('-')
             const time = new Date(Date.now()).toLocaleTimeString()
             const updateDate = date + " " + time
+
             const postDB = await this.findOne(id)
             if (postDB.length === 0) {
                 throw new CustomError(404, "Post não encontrado")
             }
+
+            const idHistory = this.idGenerator.generateId()
+            const history = new History(idHistory, id, title, body, postDB[0].creationDate, updateDate)
+            await this.historyData.insertInHistory(history)
 
             const post = new Post(id, title, body, postDB[0].creationDate, updateDate)
             await this.postData.update(post)
@@ -107,5 +119,6 @@ export class PostBusiness {
 }
 export default new PostBusiness(
     new PostData(),
+    new HistoryData(),
     new IdGenerator(),
 );

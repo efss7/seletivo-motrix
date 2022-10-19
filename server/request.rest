@@ -9,18 +9,18 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Calopsita",
-  "content": "Toguro Lorem Ipsum"
+  "title": "Create funfou",
+  "body": "Toguro Lorem Ipsum"
 }
 
 ###
 //update
-PUT  http://localhost:3003/posts/c5848e01-5c7d-4512-9694-7337389066be
+PUT  http://localhost:3003/posts/aca7875b-7e6a-46d4-b3fa-db36cfe4184e
 Content-Type: application/json
 
 { 
-  "title": "Update funfou",
-  "content": "Sucesso"
+  "title": "Só pra ver se salva com uma nova data",
+  "body": "e outro conteudo e conserva o id da fk"
 }
 ###
 //delete
