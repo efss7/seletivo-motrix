@@ -1,9 +1,11 @@
 import { PostBusiness } from "../src/business/PostBusiness";
+import { HistoryDataMock } from "./mock/data/HistoryDataMock";
 import { PostDataMock } from "./mock/data/PostDataMock";
 import IdGeneratorMock from "./mock/IdGeneratorMock";
 
 const PostBusinessMock = new PostBusiness(
     new PostDataMock(),
+    new HistoryDataMock(),
     new IdGeneratorMock()
 )
 
