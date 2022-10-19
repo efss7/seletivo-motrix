@@ -53,7 +53,7 @@ export class PostData extends BaseDatabase {
         }
     };
 
-    delete = async (id: string) => {
+    delete = async (id: string):Promise<void> => {
         try {
             await BaseDatabase.connection(tableName)
                 .where({ id })
