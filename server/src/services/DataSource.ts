@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import { DataSource } from "typeorm";
 import { posts1666017177107 } from "../migration/1666017177107-posts";
+import { historyPosts1666190082148 } from "../migration/1666190082148-history_posts";
 
 config()
 
@@ -14,5 +15,5 @@ export const AppDataSource = new DataSource({
     synchronize: false,
     entities: [],
     subscribers: [],
-    migrations: [posts1666017177107],
+    migrations: [posts1666017177107, historyPosts1666190082148],
 })

@@ -9,8 +9,8 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Teste",
-  "body": "Toguro Lorem Ipsum"
+  "title": "Calopsita",
+  "content": "Toguro Lorem Ipsum"
 }
 
 ###
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 { 
   "title": "Update funfou",
-  "body": "Sucesso"
+  "content": "Sucesso"
 }
 ###
 //delete
