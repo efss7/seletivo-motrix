@@ -9,19 +9,23 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Create funfou",
+  "title": "Jurandir",
   "body": "Toguro Lorem Ipsum"
 }
 
 ###
 //update
-PUT  http://localhost:3003/posts/aca7875b-7e6a-46d4-b3fa-db36cfe4184e
+PUT  http://localhost:3003/posts/f3239a8f-a566-467e-9228-97a308d30a9e
 Content-Type: application/json
 
 { 
-  "title": "Só pra ver se salva com uma nova data",
-  "body": "e outro conteudo e conserva o id da fk"
+  "title": "Quarta",
+  "body": "Toguro Lorem Ipsum"
 }
 ###
 //delete
 DELETE  http://localhost:3003/posts/c5848e01-5c7d-4512-9694-7337389066be
+###
+
+//findHistoryByd
+GET http://localhost:3003/history/f3239a8f-a566-467e-9228-97a308d30a9e

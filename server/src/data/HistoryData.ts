@@ -21,4 +21,16 @@ export class HistoryData extends BaseDatabase {
             throw new CustomError(500, error.sqlMessage);
         }
     }
+
+    findHistoryById = async (idPost:string) => {
+
+        try {
+            return BaseDatabase.connection(tableName)
+                .select("*")
+                .where({ idPost })
+                .orderBy('updateDate', 'asc')
+        } catch (error: any) {
+            throw new CustomError(500, error.sqlMessage);
+        }
+    }
 }
