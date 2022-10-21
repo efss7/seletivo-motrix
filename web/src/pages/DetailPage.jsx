@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function DetailPage() {
-  return (
-    <div>DetailPage</div>
-  )
+  return <div>DetailPage</div>;
 }
 
-export default DetailPage
+export default DetailPage;

@@ -10,6 +10,7 @@ export class PostData extends BaseDatabase {
         try {
             return BaseDatabase.connection(tableName)
                 .select("*")
+                .orderBy('creationDate', 'desc')
         } catch (error: any) {
             throw new CustomError(500, error.sqlMessage)
         }
