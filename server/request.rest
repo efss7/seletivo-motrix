@@ -9,7 +9,7 @@ POST http://localhost:3003/posts
 Content-Type: application/json
 
 { 
-  "title": "Teste 4",
+  "title": "Teste 5",
   "body": "Toguro Lorem Ipsum"
 }
 
@@ -19,7 +19,7 @@ PUT  http://localhost:3003/posts/f3239a8f-a566-467e-9228-97a308d30a9e
 Content-Type: application/json
 
 { 
-  "title": "Quarta",
+  "title": "Quinta",
   "body": "Toguro Lorem Ipsum"
 }
 ###

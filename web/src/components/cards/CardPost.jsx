@@ -1,42 +1,42 @@
 import {
-  Box, Card, CardContent, Typography,
+  Box, Card, CardContent, Grid, Typography,
 } from "@mui/material";
 import moment from "moment";
-import React from "react";
+import React, { useContext } from "react";
+import { Motrix } from "../../global/State";
 
 export function PostCard(props) {
   const { posts } = props;
-  // const { } = useContext(Motrix);
+  const { search } = useContext(Motrix);
 
   return (
     <>
-      {posts.map((post) => (
-        <Card
-          key={post.id}
-          sx={{
-            display: { xs: "flex", md: "grid" },
-            flexDirection: { xs: "column", md: "row" },
-            margin: 1,
-          }}
-        >
-          <CardContent>
-            <Box display="flex" alignItens="end">
-              {/* <Typography color="textSecondary" gutterBottom>
-                Title:
-              </Typography> */}
-              <Typography color="textSecondary" gutterBottom>
-                Postado:
-                {moment(post.creationDate).locale("pt-br").format('llll')}
-
-              </Typography>
-            </Box>
-
-            <Typography variant="h6" component="h2" color="primary">
-              {post.title}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
+      <Grid container>
+        {posts
+          .filter((post) => post.title.toUpperCase().includes(search.toUpperCase()))
+          .map((post) => (
+            <Grid item xs={12} sm={6} md={3}>
+              <Card
+                key={post.id}
+                sx={{ margin: 1, boxShadow: 0 }}
+              >
+                <CardContent>
+                  <Box display="flex" justifyContent="space-between">
+                    <Typography color="" gutterBottom>
+                      Title:
+                    </Typography>
+                    <Typography gutterBottom>
+                      {moment(post.creationDate).format('lll')}
+                    </Typography>
+                  </Box>
+                  <Typography variant="h6" component="h2" color="secondary">
+                    {post.title}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+      </Grid>
     </>
   );
 }
