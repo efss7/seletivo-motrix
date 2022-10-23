@@ -22,14 +22,14 @@ export function PostCard(props) {
               >
                 <CardContent>
                   <Box display="flex" justifyContent="space-between">
-                    <Typography color="" gutterBottom>
+                    <Typography color="accentColor" gutterBottom>
                       Title:
                     </Typography>
-                    <Typography gutterBottom>
+                    <Typography color="accentColor" component="data" gutterBottom>
                       {moment(post.creationDate).format('lll')}
                     </Typography>
                   </Box>
-                  <Typography variant="h6" component="h2" color="secondary">
+                  <Typography variant="h6" component="h2" color="primary">
                     {post.title}
                   </Typography>
                 </CardContent>
