@@ -15,16 +15,16 @@ Content-Type: application/json
 
 ###
 //update
-PUT  http://localhost:3003/posts/f3239a8f-a566-467e-9228-97a308d30a9e
+PUT  http://localhost:3003/posts/34051f2d-1b64-4341-9ac5-14dec23a34b4
 Content-Type: application/json
 
 { 
-  "title": "Quinta",
+  "title": "ok",
   "body": "Toguro Lorem Ipsum"
 }
 ###
 //delete
-DELETE  http://localhost:3003/posts/c5848e01-5c7d-4512-9694-7337389066be
+DELETE  http://localhost:3003/posts/37f7e63c-7922-4397-9ec6-8624ab2fd33e
 ###
 
 //findHistoryByd

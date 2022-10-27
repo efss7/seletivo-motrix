@@ -10,7 +10,7 @@ export function Router() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/add-post" element={<AddPostPage />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/posts/:id" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
   );

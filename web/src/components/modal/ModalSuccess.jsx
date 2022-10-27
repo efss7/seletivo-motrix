@@ -1,8 +1,6 @@
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Typography, Modal, Button } from '@mui/material';
 import { Motrix } from '../../global/State';
 
 import { ModalContainer, Content } from "./styles";

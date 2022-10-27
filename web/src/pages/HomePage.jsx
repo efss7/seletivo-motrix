@@ -4,7 +4,7 @@ import {
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { PostCard } from "../components/cards/CardPost";
+import { PostCard } from "../components/cards/PostCard";
 import { HeaderSimple } from "../components/headers/HeaderSimple";
 import { SearchBar } from "../components/SearchBar";
 import { Motrix } from "../global/State";

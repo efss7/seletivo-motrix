@@ -110,6 +110,7 @@ export class PostBusiness {
                 throw new CustomError(422, "Id is invalid");
             }
 
+            await this.historyData.deleteHistory(id)
             await this.postData.delete(id);
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);

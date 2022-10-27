@@ -1,13 +1,18 @@
 import {
   Box, Card, CardContent, Grid, Typography,
 } from "@mui/material";
-import moment from "moment";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Motrix } from "../../global/State";
 
 export function PostCard(props) {
   const { posts } = props;
   const { search } = useContext(Motrix);
+  const navigate = useNavigate();
+
+  function detailPost(postId) {
+    navigate(`/posts/${postId}`);
+  }
 
   return (
     <>
@@ -15,10 +20,10 @@ export function PostCard(props) {
         {posts
           .filter((post) => post.title.toUpperCase().includes(search.toUpperCase()))
           .map((post) => (
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid key={post.id} item xs={12} sm={6} md={3}>
               <Card
-                key={post.id}
                 sx={{ margin: 1, boxShadow: 0 }}
+                onClick={() => detailPost(post.id)}
               >
                 <CardContent>
                   <Box display="flex" justifyContent="space-between">
@@ -26,7 +31,10 @@ export function PostCard(props) {
                       Title:
                     </Typography>
                     <Typography color="accentColor" component="data" gutterBottom>
-                      {moment(post.creationDate).format('lll')}
+                      {new Date(!post.updateDate ? post.creationDate : post.updateDate)
+                        .toLocaleString()
+                        .slice(0, 16)
+                        .replace(" ", " às ")}
                     </Typography>
                   </Box>
                   <Typography variant="h6" component="h2" color="primary">

@@ -33,4 +33,15 @@ export class HistoryData extends BaseDatabase {
             throw new CustomError(500, error.sqlMessage);
         }
     }
+    
+    deleteHistory = async (idPost:string) =>{
+
+    try {
+        await BaseDatabase.connection(tableName)
+            .where({ idPost })
+            .delete()
+    } catch (error: any) {
+        throw new CustomError(500, error.sqlMessage);
+    }
+    }
 }

@@ -3,14 +3,15 @@ import {
   Box, Button, TextField,
 } from '@mui/material';
 import React, { useContext } from 'react';
-import Logo from "../assets/motrix-logo.jpg";
-import { Motrix } from '../global/State';
-import { CreatePost } from '../services/requests/CreatePost';
-import { ModalError } from './modal/ModalError';
-import { ModalSuccess } from './modal/ModalSuccess';
-import { ModalServerError } from './modal/ModalServerError';
+import { useParams } from 'react-router-dom';
+import { Motrix } from '../../global/State';
+import { UpdatePost } from '../../services/requests/UpdatePost';
+import { ModalError } from '../modal/ModalError';
+import { ModalServerError } from '../modal/ModalServerError';
+import { ModalSuccess } from '../modal/ModalSuccess';
 
-export function FormCreate() {
+export function FormEdit() {
+  const { id } = useParams();
   const {
     form,
     onChange,
@@ -26,12 +27,13 @@ export function FormCreate() {
       title: form.title,
       body: form.body,
     };
-    CreatePost(
+    UpdatePost(
       newPost,
       setLoading,
       handleModalSuccess,
       setModalServerError,
       setServerMessageError,
+      id,
     );
   };
 
@@ -40,12 +42,9 @@ export function FormCreate() {
     isOk ? makeRequest() : handleModalError();
   };
   return (
-    <>
-      <Box display="flex" flexDirection="column" justifyContent="center" gap="1rem" mx="auto" sx={{ maxWidth: "20rem", height: "calc(100vh - 4rem)" }}>
-        <Box sx={{ textAlign: "center", margin: 0 }}>
-          <img src={Logo} alt="logoMotrix" />
-        </Box>
 
+    <>
+      <Box sx={{ margin: 2, maxWidth: "600px" }}>
         <TextField
           sx={{ bgcolor: "#ffffff", borderRadius: "5px" }}
           name="title"
@@ -80,12 +79,13 @@ export function FormCreate() {
           type="submit"
           onClick={() => checkRequest()}
         >
-          Postar
+          Editar
         </Button>
-        <ModalSuccess />
-        <ModalError />
-        <ModalServerError />
       </Box>
+      <ModalSuccess />
+      <ModalError />
+      <ModalServerError />
     </>
+
   );
 }
