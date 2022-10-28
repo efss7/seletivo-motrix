@@ -1,10 +1,10 @@
-/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { baseUrl } from "../../constants/baseUrl";
 
-export const FindHistoryById = (id) => {
+export const DeletePost = async (id) => {
   try {
-    return axios.get(`${baseUrl}/history/${id}`);
+    await axios.delete(`${baseUrl}/posts/${id}`);
   } catch (error) {
     console.log(error);
   }

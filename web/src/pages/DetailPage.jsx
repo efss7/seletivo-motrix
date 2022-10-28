@@ -43,7 +43,7 @@ function DetailPage() {
       {
         (!loading && !error) && (
         <>
-          <PostDetailCard post={post} />
+          <PostDetailCard post={post} setPost={setPost} />
         </>
         )
       }

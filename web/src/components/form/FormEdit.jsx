@@ -1,3 +1,5 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import {
   Box, Button, TextField,
@@ -5,42 +7,36 @@ import {
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Motrix } from '../../global/State';
+import { FindOne } from '../../services/requests/FindOne';
 import { UpdatePost } from '../../services/requests/UpdatePost';
 import { ModalError } from '../modal/ModalError';
 import { ModalServerError } from '../modal/ModalServerError';
 import { ModalSuccess } from '../modal/ModalSuccess';
 
-export function FormEdit() {
+export function FormEdit(props) {
+  const { setPost } = props;
   const { id } = useParams();
   const {
     form,
     onChange,
     setLoading,
-    handleModalSuccess,
-    handleModalError,
-    setModalServerError,
-    setServerMessageError,
   } = useContext(Motrix);
 
-  const makeRequest = () => {
-    const newPost = {
+  const makeRequest = async () => {
+    const editPost = {
       title: form.title,
       body: form.body,
     };
-    UpdatePost(
-      newPost,
+    await UpdatePost(
+      editPost,
       setLoading,
-      handleModalSuccess,
-      setModalServerError,
-      setServerMessageError,
       id,
     );
+    const postResult = await FindOne(id);
+    const resultData = await postResult.data[0];
+    setPost(resultData);
   };
 
-  const checkRequest = () => {
-    const isOk = form.title && form.body;
-    isOk ? makeRequest() : handleModalError();
-  };
   return (
 
     <>
@@ -77,7 +73,7 @@ export function FormEdit() {
           variant="contained"
           color="accentColor"
           type="submit"
-          onClick={() => checkRequest()}
+          onClick={() => makeRequest()}
         >
           Editar
         </Button>

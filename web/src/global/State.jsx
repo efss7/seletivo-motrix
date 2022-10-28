@@ -6,6 +6,7 @@ export const Motrix = React.createContext();
 
 export function GlobalState(props) {
   const [posts, setPosts] = useState([]);
+  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState([]);
   const [search, handleSearch] = useInput('');
   const { form, onChange, clear } = useForm({
@@ -48,6 +49,8 @@ export function GlobalState(props) {
     handleModalSuccess,
     handleModalError,
     handleModalServerError,
+    history,
+    setHistory,
   };
   return <Motrix.Provider value={params}>{props.children}</Motrix.Provider>;
 }

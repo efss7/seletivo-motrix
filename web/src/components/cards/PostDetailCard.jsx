@@ -3,20 +3,49 @@ import { Delete, Edit, History } from "@mui/icons-material";
 import {
   Box, Button, Card, CardContent, Chip, Divider, Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Motrix } from "../../global/State";
+import { DeletePost } from "../../services/requests/DeletePost";
+import { FindHistoryById } from "../../services/requests/FindHistoryById";
 import { FormEdit } from "../form/FormEdit";
-// import { HistoryCard } from "./HistoryCard";
+import { HistoryCard } from "./HistoryCard";
 
 export function PostDetailCard(props) {
-  const { post } = props;
+  const { id } = useParams();
+  const { history, setHistory } = useContext(Motrix);
+  const navigate = useNavigate();
+  const { post, setPost } = props;
   const [edit, setEdit] = useState(false);
-  const [history, setHistory] = useState(false);
+  const [handleHistory, setHandleHistory] = useState(false);
 
   function handleEdit() {
     edit ? setEdit(false) : setEdit(true);
   }
-  function handleHistory() {
-    history ? setHistory(false) : setHistory(true);
+
+  async function handleDelete() {
+    await DeletePost(id);
+    navigate("/");
+  }
+
+  async function getHistoryById() {
+    try {
+      const postResult = await FindHistoryById(id);
+
+      if (!Array.isArray(postResult.data)) {
+        throw new Error("Ocorreu um erro");
+      }
+
+      const resultData = await postResult.data;
+      setHistory(resultData);
+      setHandleHistory(true);
+    } catch (err) {
+      console(err);
+    }
+  }
+
+  function clickHandleHistory() {
+    handleHistory ? setHandleHistory(false) : getHistoryById(id);
   }
 
   return (
@@ -24,7 +53,7 @@ export function PostDetailCard(props) {
       <Card
         key={post.id}
         sx={{
-          margin: 1, boxShadow: 0,
+          margin: 1, boxShadow: 0, minWidth: 380,
         }}
       >
         <CardContent sx={{ margin: 1 }}>
@@ -55,22 +84,22 @@ export function PostDetailCard(props) {
             <Button
               variant="contained"
               color="accentColor"
-              onClick={() => handleHistory()}
+              onClick={() => clickHandleHistory()}
             >
               <History />
             </Button>
             <Button
               variant="contained"
               color="accentColor"
-
+              onClick={() => handleDelete()}
             >
               <Delete />
             </Button>
           </Box>
         </CardContent>
       </Card>
-      {edit && <FormEdit />}
-      {/* {history && <HistoryCard />} */}
+      {edit && <FormEdit setPost={setPost} />}
+      {history && <HistoryCard history={history} />}
     </Box>
   );
 }
