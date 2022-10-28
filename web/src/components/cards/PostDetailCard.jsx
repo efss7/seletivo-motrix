@@ -7,15 +7,16 @@ import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Motrix } from "../../global/State";
 import { DeletePost } from "../../services/requests/DeletePost";
-import { FindHistoryById } from "../../services/requests/FindHistoryById";
 import { FormEdit } from "../form/FormEdit";
 import { HistoryCard } from "./HistoryCard";
 
 export function PostDetailCard(props) {
-  const { id } = useParams();
-  const { history, setHistory } = useContext(Motrix);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { history } = useContext(Motrix);
   const { post, setPost } = props;
+
   const [edit, setEdit] = useState(false);
   const [handleHistory, setHandleHistory] = useState(false);
 
@@ -28,24 +29,8 @@ export function PostDetailCard(props) {
     navigate("/");
   }
 
-  async function getHistoryById() {
-    try {
-      const postResult = await FindHistoryById(id);
-
-      if (!Array.isArray(postResult.data)) {
-        throw new Error("Ocorreu um erro");
-      }
-
-      const resultData = await postResult.data;
-      setHistory(resultData);
-      setHandleHistory(true);
-    } catch (err) {
-      console(err);
-    }
-  }
-
   function clickHandleHistory() {
-    handleHistory ? setHandleHistory(false) : getHistoryById(id);
+    handleHistory ? setHandleHistory(false) : setHandleHistory(true);
   }
 
   return (
@@ -53,7 +38,7 @@ export function PostDetailCard(props) {
       <Card
         key={post.id}
         sx={{
-          margin: 1, boxShadow: 0, minWidth: 380,
+          margin: 1, boxShadow: 0, minWidth: 380, maxWidth: 700,
         }}
       >
         <CardContent sx={{ margin: 1 }}>
@@ -99,7 +84,7 @@ export function PostDetailCard(props) {
         </CardContent>
       </Card>
       {edit && <FormEdit setPost={setPost} />}
-      {history && <HistoryCard history={history} />}
+      {handleHistory && <HistoryCard history={history} />}
     </Box>
   );
 }

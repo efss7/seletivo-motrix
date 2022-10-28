@@ -1,6 +1,3 @@
-/* eslint-disable no-const-assign */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-unused-expressions */
 import {
   Box, Button, TextField,
 } from '@mui/material';
@@ -10,7 +7,6 @@ import { Motrix } from '../../global/State';
 import { FindOne } from '../../services/requests/FindOne';
 import { UpdatePost } from '../../services/requests/UpdatePost';
 import { ModalError } from '../modal/ModalError';
-import { ModalServerError } from '../modal/ModalServerError';
 import { ModalSuccess } from '../modal/ModalSuccess';
 
 export function FormEdit(props) {
@@ -18,6 +14,7 @@ export function FormEdit(props) {
   const { id } = useParams();
   const {
     form,
+    clear,
     onChange,
     setLoading,
   } = useContext(Motrix);
@@ -27,20 +24,22 @@ export function FormEdit(props) {
       title: form.title,
       body: form.body,
     };
+    clear();
     await UpdatePost(
       editPost,
       setLoading,
       id,
     );
-    const postResult = await FindOne(id);
-    const resultData = await postResult.data[0];
-    setPost(resultData);
+    await FindOne(setPost, setLoading, id);
   };
 
   return (
 
     <>
-      <Box sx={{ margin: 2, maxWidth: "600px" }}>
+      <Box sx={{
+        display: "flex", flexDirection: "column", margin: 2, minWidth: 350, gap: 2,
+      }}
+      >
         <TextField
           sx={{ bgcolor: "#ffffff", borderRadius: "5px" }}
           name="title"
@@ -80,7 +79,6 @@ export function FormEdit(props) {
       </Box>
       <ModalSuccess />
       <ModalError />
-      <ModalServerError />
     </>
 
   );

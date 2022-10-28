@@ -28,7 +28,7 @@ export function PostCard(props) {
                 <CardContent>
                   <Box display="flex" justifyContent="space-between">
                     <Typography color="accentColor" gutterBottom>
-                      Title:
+                      Título:
                     </Typography>
                     <Typography color="accentColor" component="data" gutterBottom>
                       {new Date(!post.updateDate ? post.creationDate : post.updateDate)

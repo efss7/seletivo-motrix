@@ -8,9 +8,8 @@ export const UpdatePost = async (
 ) => {
   try {
     await setLoading(true);
-    const res = await axios.put(`${baseUrl}/posts/${id}`, body);
+    await axios.put(`${baseUrl}/posts/${id}`, body);
     await setLoading(false);
-    console.log(res);
   } catch (error) {
     console.log(error.response);
     setLoading(false);
