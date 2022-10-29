@@ -8,7 +8,7 @@
 <a href="#desenvolvedor">Desenvolvedor</a>
 </p>
 
-<img width="300xp" src=""/>
+<img width="200xp" src="https://user-images.githubusercontent.com/99001809/198813685-b8280532-985f-45fe-a0ce-c7a1ab90fd00.jpg"/>
 
 <h1 id="sobre"> Projeto Motrix 📝</h1>
 
@@ -87,7 +87,7 @@ Uma aplicação **full-stack** desenvolvida para o processo seletivo da [Motrix]
 ```
 8. cd seletivo-motrix/web
 9. npm install
-10. npm run dev
+10. npm run start
 ```
 Após rodar o último comando no seu terminal, ele irá retornar um link, é necessário que coloque ele no seu navegador ou clique aqui ➡️ http://localhost:3000/
 
@@ -100,9 +100,9 @@ Após rodar o último comando no seu terminal, ele irá retornar um link, é nec
 - 3️⃣ DetailPostPage
 
 <div display="flex">
-<img width="100xp" src=""/>
-<img width="100xp" src=""/>
-<img width="100xp" src=""/>
+<img width="100xp" src="https://user-images.githubusercontent.com/99001809/198813832-8575bcd2-fddb-48fb-9d7a-667ecb03776c.png"/>
+<img width="100xp" src="https://user-images.githubusercontent.com/99001809/198813848-f9a2aa0d-d23d-4b33-819a-4cbce03f995b.png"/>
+<img width="100xp" src="https://user-images.githubusercontent.com/99001809/198813866-da353ccb-6370-4b67-8f2d-34f778c56844.png"/>
 
 </div>
 
