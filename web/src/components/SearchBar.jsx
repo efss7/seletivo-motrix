@@ -9,6 +9,7 @@ export function SearchBar() {
 
     <TextField
       sx={{ bgcolor: "#ffffff", borderRadius: "5px" }}
+      color="accentColor"
       fullWidth
       label="Posts"
       variant="outlined"
